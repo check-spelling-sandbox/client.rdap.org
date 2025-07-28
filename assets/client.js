@@ -604,7 +604,7 @@ function processEvents(events, dl) {
 
   for (var i = 0 ; i < events.length ; i++) {
     var span1 = document.createElement('span');
-    span1.appendChild(document.createTextNode(new Date(events[i].eventDate).toLocaleString()));
+    span1.appendChild(document.createTextNode(new Date(events[i].eventDate).toLocaleString(undefined, {timeZoneName:"short"})));
     span1.classList.add('rdap-event-time');
     span1.setAttribute('title', events[i].eventDate);
 
