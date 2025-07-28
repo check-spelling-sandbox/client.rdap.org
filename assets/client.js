@@ -778,17 +778,22 @@ function processDNSSEC(domain) {
   }
 
   if (domain.secureDNS.hasOwnProperty("dsData")) {
-    var ul = document.createElement('ul');
+    card = document.createElement('div');
+    card.classList.add('card');
+
+    var dsdl = card.appendChild(document.createElement('dl'));
+    dsdl.classList.add('card-body');
 
     for (var i = 0 ; i < domain.secureDNS.dsData.length ; i++) {
       var ds = domain.secureDNS.dsData[i];
 
-      ul.appendChild(document.createElement('li'))
-        .appendChild(document.createElement('code'))
-        .appendChild(document.createTextNode([domain.ldhName+".", "IN", "DS", ds.keyTag, ds.algorithm, ds.digestType, ds.digest].join(" ")));
+      addProperty(dsdl, 'Key Tag:', ds.keyTag);
+      addProperty(dsdl, 'Algorithm:', ds.algorithm);
+      addProperty(dsdl, 'Digest type:', ds.digestType);
+      addProperty(dsdl, 'Digest:', ds.digest);
     }
 
-    addProperty(dl, 'DS Record(s):', ul);
+    addProperty(dl, 'DS Record(s):', card);
   }
 
   if (domain.secureDNS.hasOwnProperty("keyData")) {
