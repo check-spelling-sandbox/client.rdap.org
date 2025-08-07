@@ -60,6 +60,8 @@ scripts:
 
 <script>
   loadRegistries();
-</script>
 
-<script src="//analytics.tau.uk.com"></script>
+  if ("client.rdap.org" == document.location.hostname.toLowerCase()) {
+    document.body.appendChild(document.createElement("script")).setAttribute("src", "//analytics.tau.uk.com");
+  }
+</script>
