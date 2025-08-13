@@ -125,8 +125,6 @@ function doQuery() {
 
   var queryParams = '?jscard=1';
 
-  var followReferral = document.getElementById('follow-referral').checked;
-
   var url;
   if ('url' == typeval) {
     url = object;
@@ -150,7 +148,7 @@ function doQuery() {
     handleError('No RDAP URL available for ' + typeval + ' ' + object + '.');
 
   } else {
-    sendQuery(url, followReferral);
+    sendQuery(url, document.getElementById('follow-referral').checked);
 
   }
 }
