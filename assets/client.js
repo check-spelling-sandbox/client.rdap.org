@@ -387,7 +387,7 @@ function handleResponse(xhr, followReferral=false, followingReferral=false) {
       url.href = window.location.href;
       url.search = '?type=' + escape(document.getElementById('type').value) +
                     '&object=' + escape(document.getElementById('object').value) +
-      (document.getElementById('follow-referral').checked ? '&follow-referral=1' : '');
+                    '&follow-referral=' + (document.getElementById('follow-referral').checked ? 1 : 0);
 
       window.history.pushState(null, window.title, url.href);
 
@@ -1156,8 +1156,8 @@ function checkParams() {
 
   }
 
-  if (params.has('follow-referral') && 1 == params.get('follow-referral')) {
-    document.getElementById('follow-referral').checked = true;
+  if (params.has('follow-referral')) {
+    document.getElementById('follow-referral').checked = (1 == params.get('follow-referral'));
   }
 
   if (params.has('object')) {
