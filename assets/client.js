@@ -443,13 +443,13 @@ function processObject(object, toplevel, followReferral=true, followingReferral=
   card.classList.add('card');
 
   var titleText = '';
-  if (object.hasOwnProperty("unicodeName")) {
+  if (object.hasOwnProperty("unicodeName") && 'string' == typeof object.unicodeName) {
     titleText = object.unicodeName.toUpperCase();
 
-  } else if (object.hasOwnProperty("ldhName")) {
+  } else if (object.hasOwnProperty("ldhName") && 'string' == typeof object.ldhName) {
     titleText = object.ldhName.toUpperCase();
 
-  } else if (object.hasOwnProperty("handle")) {
+  } else if (object.hasOwnProperty("handle") && 'string' == typeof object.handle) {
     titleText = object.handle.toUpperCase();
 
   }
