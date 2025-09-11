@@ -717,7 +717,7 @@ function convertURLsToLinks(str) {
 // process a domain
 function processDomain(object, dl, toplevel=false) {
 
-  if (toplevel) document.title = 'Domain ' + (object.unicodeName ? object.unicodeName : object.ldhName).toUpperCase() + ' - RDAP Lookup';
+  if (toplevel) document.title = 'Domain ' + String(object.unicodeName ? object.unicodeName : object.ldhName).toUpperCase() + ' - RDAP Lookup';
 
   if (object.hasOwnProperty("unicodeName")) {
     addProperty(dl, 'Name:', object.unicodeName);
