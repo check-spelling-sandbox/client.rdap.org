@@ -117,7 +117,7 @@ function createXHR(url) {
 function doQuery() {
   var type    = document.getElementById('type');
   var typeval = type.options[type.selectedIndex].value;
-  var object  = document.getElementById('object').value.toLowerCase();
+  var object  = document.getElementById('object').value;
 
   if ('autnum' == typeval) {
     object = object.replace(/^asn?/i, '');
@@ -130,16 +130,16 @@ function doQuery() {
     url = object;
 
   } else if ('tld' == typeval) {
-    url = 'https://rdap.iana.org/domain/' + object + queryParams;
+    url = 'https://rdap.iana.org/domain/' + object.toLowerCase() + queryParams;
 
   } else if ('registrar' == typeval) {
-    url = 'https://registrars.rdap.org/entity/' + object + '-IANA' + queryParams;
+    url = 'https://registrars.rdap.org/entity/' + object.toLowerCase() + '-IANA' + queryParams;
 
   } else if ('json' == typeval) {
     url = 'json://' + object;
 
   } else {
-    url = getRDAPURL(typeval, object);
+    url = getRDAPURL(typeval, object.toLowerCase());
     if (url) url += queryParams;
 
   }
@@ -683,7 +683,7 @@ function processRemarksOrNotices(things) {
 
     var title = document.createElement('header');
     title.classList.add('card-header', 'font-weight-bold');
-    title.appendChild(document.createTextNode(things[i].title));
+    title.appendChild(document.createTextNode(things[i].title ?? things[i].type));
     section.appendChild(title);
 
     var body = document.createElement('div');
@@ -701,6 +701,11 @@ function processRemarksOrNotices(things) {
       processLinks(things[i].links, ldl);
       body.appendChild(ldl);
     }
+
+    if (body.childNodes.length < 1) {
+        body.parentNode.removeChild(body);
+    }
+
   }
 
   return div;
