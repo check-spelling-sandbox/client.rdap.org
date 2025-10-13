@@ -19,3 +19,8 @@ dl {
   margin:-0.25em 0 0 0;
   padding:0.25em 0 0 0;
 }
+
+#output-div {
+  display: block;
+  width: 100%;
+}
